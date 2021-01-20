@@ -1,2 +1,4 @@
 venv
 src/com/neteng/streamer/output
+.idea
+neteng_streamer.iml
