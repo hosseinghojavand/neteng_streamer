@@ -23,7 +23,11 @@ public class VideoStream {
 	//returns the next frame as an array of byte and the size of the frame
 	//-----------------------------------
 	public int getnextframe(byte[] frame) throws Exception {
-		int length = 0;
+
+		Server.last_length+=5;
+		int res = fis.read(frame, Server.last_length -5, Server.last_length);
+		return res;
+		/*int length = 0;
 		String length_string;
 		byte[] frame_length = new byte[5];
 
@@ -34,6 +38,6 @@ public class VideoStream {
 		length_string = new String(frame_length);
 		length = Integer.parseInt(length_string);
 
-		return (fis.read(frame, 0, length));
+		return (fis.read(frame, 0, length));*/
 	}
 }

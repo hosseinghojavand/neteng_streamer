@@ -3,16 +3,17 @@ package com.neteng.streamer;/* ------------------
  usage: java Server [RTSP listening port]
  ---------------------- */
 
+import com.googlecode.javacv.FFmpegFrameGrabber;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.*;
 import java.util.StringTokenizer;
 
@@ -69,6 +70,8 @@ public class Server extends JFrame implements ActionListener {
 
 	final static int TEARDOWN = 6;
 
+	public static int last_length = 0;
+
 	static int state; // RTSP Server state == INIT or READY or PLAY
 
 	Socket RTSPsocket; // socket used to send/receive RTSP messages
@@ -122,6 +125,7 @@ public class Server extends JFrame implements ActionListener {
 	// main
 	// ------------------------------------
 	public static void main(String argv[]) throws Exception {
+
 		// create a Server object
 		Server theServer = new Server();
 
@@ -229,9 +233,17 @@ public class Server extends JFrame implements ActionListener {
 				// get next frame to send from the video, as well as its size
 				int image_length = video.getnextframe(buf);
 
+
+
+
+                BufferedImage bImage = ImageIO.read(new File("/media/hossein/hossein/projects/net_eng/phas3/neteng_streamer/src/com/neteng/streamer/outdir/00001.png"));
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				ImageIO.write(bImage, "jpg", bos );
+				byte [] buf = bos.toByteArray();
+
 				// Builds an RTPpacket object containing the frame
 				RTPpacket rtp_packet = new RTPpacket(MJPEG_TYPE, imagenb,
-						imagenb * FRAME_PERIOD, buf, image_length);
+						imagenb * FRAME_PERIOD, buf, buf.length);
 
 				// get to total length of the full rtp packet to send
 				int packet_length = rtp_packet.getlength();
