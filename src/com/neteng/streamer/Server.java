@@ -80,7 +80,7 @@ public class Server extends JFrame implements ActionListener {
 
 	static String VideoFileName; // video file requested from the client
 
-	static String filename =  "/media/hossein/hossein/projects/net_eng/phas3/neteng_streamer/src/com/neteng/streamer/movie.Mjpeg";
+	static String filename =  "D:\\Projects\\neteng_streamer\\src\\com\\neteng\\streamer/movie.Mjpeg";
 
 	static int RTSP_ID = 123456; // ID of the RTSP session
 
