@@ -7,21 +7,13 @@ public class RTPpacket {
 
 	//Fields that compose the RTP header
 	public int Version;
-
 	public int Padding;
-
 	public int Extension;
-
 	public int CC;
-
 	public int Marker;
-
 	public int PayloadType;
-
 	public int SequenceNumber;
-
 	public int TimeStamp;
-
 	public int Ssrc;
 
 
