@@ -41,7 +41,7 @@ public class Client {
 	final static int READY = 1;
 	final static int PLAYING = 2;
 
-	static int state; // RTSP state == INIT or READY or PLAYING
+	static int state;
 
 	Socket RTSPsocket;
 
@@ -49,11 +49,10 @@ public class Client {
 	static BufferedReader RTSPBufferedReader;
 	static BufferedWriter RTSPBufferedWriter;
 
-	static String VideoFileName; // video file to request to the server
 
-	int RTSPSeqNb = 0; // Sequence number of RTSP messages within the session
+	int RTSPSeqNb = 0;
 
-	int RTSPid = 0; // ID of the RTSP session (given by the RTSP Server)
+	int RTSPid = 0;
 
 	final static String CRLF = "\r\n";
 
