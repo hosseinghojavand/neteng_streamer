@@ -18,7 +18,7 @@ public class Server extends JFrame implements ActionListener {
 
 	static String project_base_path = "/media/hossein/hossein/projects/net_eng/phas3/neteng_streamer";
 
-	static String filename = project_base_path + "/src/com/neteng/streamer/videos/sample.mjpeg";
+	static String filename = project_base_path + "/src/com/neteng/streamer/videos/movie.mjpeg";
 	static String output_file_path = project_base_path + "/src/com/neteng/streamer/output";
 
 	static int frames_size = 0;

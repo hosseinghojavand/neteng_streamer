@@ -1,4 +1,4 @@
-package com.neteng.streamer;//class RTPpacket
+package com.neteng.streamer;
 
 public class RTPpacket {
 
@@ -27,10 +27,6 @@ public class RTPpacket {
 
 	//Bitstream of the RTP payload
 	public byte[] payload;
-
-	//--------------------------
-	//Constructor of an RTPpacket object from header fields and payload bitstream
-	//--------------------------
 	public RTPpacket(int PType, int Framenb, int Time, byte[] data,
 			int data_length) {
 		//fill by default header fields:
@@ -50,9 +46,7 @@ public class RTPpacket {
 		//--------------------------
 		header = new byte[HEADER_SIZE];
 
-		//.............
-		//TO COMPLETE
-		//.............
+
 		//fill the header array of byte with RTP header fields
 		header[0] |= Version << (7-1);
 		header[0] |= Padding << (7-3);
@@ -89,9 +83,7 @@ public class RTPpacket {
 
 	}
 
-	//--------------------------
-	//Constructor of an RTPpacket object from the packet bistream 
-	//--------------------------
+
 	public RTPpacket(byte[] packet, int packet_size) {
 		//fill default fields:
 		Version = 2;
@@ -124,9 +116,6 @@ public class RTPpacket {
 		}
 	}
 
-	//--------------------------
-	//getpayload: return the payload bistream of the RTPpacket and its size
-	//--------------------------
 	public int getpayload(byte[] data) {
 
 		for (int i = 0; i < payload_size; i++)
@@ -135,23 +124,14 @@ public class RTPpacket {
 		return (payload_size);
 	}
 
-	//--------------------------
-	//getpayload_length: return the length of the payload
-	//--------------------------
 	public int getpayload_length() {
 		return (payload_size);
 	}
 
-	//--------------------------
-	//getlength: return the total length of the RTP packet
-	//--------------------------
 	public int getlength() {
 		return (payload_size + HEADER_SIZE);
 	}
 
-	//--------------------------
-	//getpacket: returns the packet bitstream and its length
-	//--------------------------
 	public int getpacket(byte[] packet) {
 		//construct the packet = header + payload
 		for (int i = 0; i < HEADER_SIZE; i++)
@@ -163,31 +143,18 @@ public class RTPpacket {
 		return (payload_size + HEADER_SIZE);
 	}
 
-	//--------------------------
-	//gettimestamp
-	//--------------------------
-
 	public int gettimestamp() {
 		return (TimeStamp);
 	}
 
-	//--------------------------
-	//getsequencenumber
-	//--------------------------
 	public int getsequencenumber() {
 		return (SequenceNumber);
 	}
 
-	//--------------------------
-	//getpayloadtype
-	//--------------------------
 	public int getpayloadtype() {
 		return (PayloadType);
 	}
 
-	//--------------------------
-	//print headers without the SSRC
-	//--------------------------
 	public void printheader() {
 		//TO DO: uncomment
 		 for (int i=0; i < (HEADER_SIZE-4); i++)
